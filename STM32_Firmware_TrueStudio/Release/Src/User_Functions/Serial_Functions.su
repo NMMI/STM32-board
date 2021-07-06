@@ -1,0 +1,2 @@
+Serial_Functions.c:5:9:Serial_Read_UART1	0	static
+Serial_Functions.c:11:9:Serial_Write_UART1	8	static

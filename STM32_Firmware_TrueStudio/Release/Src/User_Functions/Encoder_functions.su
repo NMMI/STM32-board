@@ -1,0 +1,5 @@
+Encoder_functions.c:52:6:EncoderReset	0	static
+Encoder_functions.c:74:6:InitEncoder	48	static
+Encoder_functions.c:59:6:InitEncoderGeneral	8	static
+Encoder_functions.c:207:6:ReadEncoder	32	dynamic
+Encoder_functions.c:196:6:ReadAllEncoders	8	static

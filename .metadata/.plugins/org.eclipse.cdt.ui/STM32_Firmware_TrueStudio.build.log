@@ -1,0 +1,1450 @@
+11:12:47 **** Incremental Build of configuration Release for project STM32_Firmware_TrueStudio ****
+Info: Internal Builder is used for build
+arm-atollic-eabi-gcc -c -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -std=gnu11 -D__weak=__attribute__((weak)) -D__packed=__attribute__((__packed__)) -DUSE_HAL_DRIVER -DSTM32F446xx -I../Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -Os -ffunction-sections -fdata-sections -fstack-usage -Wall -specs=nano.specs -o Src\User_Functions\command_processing.o ..\Src\User_Functions\command_processing.c 
+..\Src\User_Functions\command_processing.c: In function 'commProcess':
+..\Src\User_Functions\command_processing.c:91:13: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+             infoGet( *((uint16_t *) &g_rx.buffer[1]));
+             ^~~~~~~
+..\Src\User_Functions\command_processing.c: In function 'infoSend':
+..\Src\User_Functions\command_processing.c:223:61: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+  HAL_UART_Transmit(&huart1, (uint8_t*)packet_string, strlen(packet_string) , 300);
+                                                             ^~~~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:37:9: note: expected 'const char *' but argument is of type 'unsigned char *'
+ size_t  _EXFUN(strlen,(const char *));
+         ^
+..\Src\User_Functions\command_processing.c: In function 'infoGet':
+..\Src\User_Functions\command_processing.c:240:66: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+       HAL_UART_Transmit(&huart1, (uint8_t*)packet_string, strlen(packet_string), 300);
+                                                                  ^~~~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:37:9: note: expected 'const char *' but argument is of type 'unsigned char *'
+ size_t  _EXFUN(strlen,(const char *));
+         ^
+..\Src\User_Functions\command_processing.c:246:63: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+    HAL_UART_Transmit(&huart1, (uint8_t*)packet_string, strlen(packet_string), 300);
+                                                               ^~~~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:37:9: note: expected 'const char *' but argument is of type 'unsigned char *'
+ size_t  _EXFUN(strlen,(const char *));
+         ^
+..\Src\User_Functions\command_processing.c: In function 'infoPrepare':
+..\Src\User_Functions\command_processing.c:269:16: warning: pointer targets in passing argument 1 of 'strcpy' differ in signedness [-Wpointer-sign]
+         strcpy(info_string, "");
+                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:34:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcpy,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:270:16: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, "\r\n");
+                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:271:16: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, "Firmware version: ");
+                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:272:16: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, VERSION);
+                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:273:16: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, "\r\n\r\n");
+                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:275:16: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, "DEVICE INFO\r\n");
+                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:276:17: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+         sprintf(str, "ID: %d\r\n", (uint16_t)(c_mem.id));
+                 ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:277:16: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, str);
+                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:277:29: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, str);
+                             ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:281:18: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+          sprintf(str, "IMU Connected: %d\r\n", (uint16_t) N_IMU_Connected);
+                  ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:282:17: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+          strcat(info_string, str);
+                 ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:282:30: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+          strcat(info_string, str);
+                              ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:283:17: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+          strcat(info_string, "\r\n");
+                 ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:285:17: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+          strcat(info_string, "IMUs CONFIGURATION\r\n");
+                 ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:287:19: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+           sprintf(str, "Imu %d \r\n\tID: %d\r\n", i, (uint16_t) IMU_connected[i]);
+                   ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:288:18: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+           strcat(info_string, str);
+                  ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:288:31: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+           strcat(info_string, str);
+                               ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:290:19: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+           sprintf(str, "\tAccelerometers: ");
+                   ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:292:19: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+            strcat(str, "YES\r\n");
+                   ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:294:19: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+            strcat(str, "NO\r\n");
+                   ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:295:18: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+           strcat(str, "\tGyroscopes: ");
+                  ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:297:19: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+            strcat(str, "YES\r\n");
+                   ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:299:19: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+            strcat(str, "NO\r\n");
+                   ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:300:18: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+           strcat(str, "\tMagnetometers: ");
+                  ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:302:24: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                 strcat(str, "YES\r\n");
+                        ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:304:19: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+            strcat(str, "NO\r\n");
+                   ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:305:18: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+           strcat(str, "\tQuaternion: ");
+                  ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:307:19: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+            strcat(str, "YES\r\n");
+                   ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:309:19: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+            strcat(str, "NO\r\n");
+                   ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:310:18: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+           strcat(str, "\tTemperature: ");
+                  ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:312:19: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+            strcat(str, "YES\r\n");
+                   ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:314:19: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+            strcat(str, "NO\r\n");
+                   ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:316:18: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+           strcat(info_string, str);
+                  ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:316:31: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+           strcat(info_string, str);
+                               ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:319:17: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+          strcat(info_string, "\r\n");
+                 ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:324:18: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+          sprintf(str, "Number of Connected Encoder: %d", N_Encoder_Connected);
+                  ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:325:17: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+          strcat(info_string, str);
+                 ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:325:30: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+          strcat(info_string, str);
+                              ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:326:17: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+          strcat(info_string, "\r\n");
+                 ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:328:18: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+          sprintf(str, "Encoder Map: [");
+                  ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:329:17: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+          strcat(info_string, str);
+                 ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:329:30: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+          strcat(info_string, str);
+                              ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:331:19: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+           sprintf(str, "%d, ", Encoder_Map[i]);
+                   ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:332:18: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+           strcat(info_string, str);
+                  ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:332:31: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+           strcat(info_string, str);
+                               ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:334:18: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+          sprintf(str, "%d", Encoder_Map[N_ENCODER_MAX-1]);
+                  ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:335:17: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+          strcat(info_string, str);
+                 ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:335:30: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+          strcat(info_string, str);
+                              ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:336:15: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+       sprintf(str, "]");
+               ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:337:14: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+       strcat(info_string, str);
+              ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:337:27: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+       strcat(info_string, str);
+                           ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:338:17: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+          strcat(info_string, "\r\n");
+                 ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:342:26: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+                  sprintf(str, "ENCODERS LINE %d: ",i);
+                          ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:343:25: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                  strcat(info_string, str);
+                         ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:343:38: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+                  strcat(info_string, str);
+                                      ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:344:25: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                  strcat(info_string, "\r\n");
+                         ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:346:30: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+                      sprintf(str, "Encoder %d Measurement: %u", j+1, Encoder_Value[i][j]);
+                              ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:347:29: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                      strcat(info_string, str);
+                             ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:347:42: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+                      strcat(info_string, str);
+                                          ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:348:30: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+                      sprintf(str, ", Check Value Encoder %d: %u", j+1, Encoder_Check[i][j]);
+                              ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:349:29: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                      strcat(info_string, str);
+                             ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:349:42: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+                      strcat(info_string, str);
+                                          ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:350:29: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                      strcat(info_string, "\r\n");
+                             ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:379:24: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                 strcat(info_string, "MOTOR INFO\r\n");
+                        ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:380:24: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                 strcat(info_string, "Motor reference");
+                        ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:383:28: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                     strcat(info_string," - Currents: ");
+                            ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:386:32: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                         strcat(info_string," - Pwm: ");
+                                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:388:32: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                         strcat(info_string," - Position: ");
+                                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:392:29: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+                     sprintf(str, "%d ", (int)(g_refOld.curr));
+                             ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:393:28: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                     strcat(info_string,str);
+                            ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:393:40: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+                     strcat(info_string,str);
+                                        ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:397:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+                         sprintf(str, "%d ", (int)(g_refOld.pwm));
+                                 ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:398:32: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                         strcat(info_string,str);
+                                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:398:44: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+                         strcat(info_string,str);
+                                            ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:401:33: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+                         sprintf(str, "%d ", (int)(g_refOld.pos >> c_mem.res[0]));
+                                 ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:402:32: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                         strcat(info_string,str);
+                                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:402:44: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+                         strcat(info_string,str);
+                                            ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:405:24: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                 strcat(info_string,"\r\n");
+                        ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:407:25: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+                 sprintf(str, "Motor enabled: ");
+                         ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:409:28: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                     strcat(str, "YES\r\n");
+                            ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:411:28: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                     strcat(str, "NO\r\n");
+                            ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:413:24: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                 strcat(info_string, str);
+                        ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:413:37: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+                 strcat(info_string, str);
+                                     ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:504:32: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                         strcat(info_string, "Control mode: Position\r\n");
+                                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:507:32: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                         strcat(info_string, "Control mode: PWM\r\n");
+                                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:510:32: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                         strcat(info_string, "Control mode: Current\r\n");
+                                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:513:32: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+                         strcat(info_string, "Control mode: Position and Current\r\n");
+                                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:606:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(str, "Expansion Port: %d", (uint32_t)(g_mem.read_exp_port));
+           ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:606:34: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long unsigned int' [-Wformat=]
+   sprintf(str, "Expansion Port: %d", (uint32_t)(g_mem.read_exp_port));
+                                  ^
+..\Src\User_Functions\command_processing.c:607:16: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, str);
+                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:607:29: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, str);
+                             ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:608:16: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, "\r\n");
+                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:610:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(str, "Chip Temperature: %d Celsius", (uint32_t)(ChipTemperature));
+           ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:610:36: warning: format '%d' expects argument of type 'int', but argument 3 has type 'long unsigned int' [-Wformat=]
+   sprintf(str, "Chip Temperature: %d Celsius", (uint32_t)(ChipTemperature));
+                                    ^
+..\Src\User_Functions\command_processing.c:611:16: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, str);
+                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:611:29: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, str);
+                             ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:612:16: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, "\r\n");
+                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:614:11: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+   sprintf(str, "Time between two reading cycles: %ld us", (uint32_t)(execution_time_us));
+           ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:615:16: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, str);
+                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:615:29: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, str);
+                             ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:616:16: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, "\r\n");
+                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c: In function 'infoReading':
+..\Src\User_Functions\command_processing.c:628:12: warning: pointer targets in passing argument 1 of 'strcpy' differ in signedness [-Wpointer-sign]
+     strcpy(info_string, "");
+            ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:34:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcpy,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:629:12: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+     strcat(info_string, "\r\n");
+            ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:630:12: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+     strcat(info_string, "SENSORS INFO\r\n");
+            ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:632:17: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+         sprintf(str, "Imu %d \r\n\tID: %d\r\n", i, (int) IMU_connected[i]);
+                 ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:633:16: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, str);
+                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:633:29: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, str);
+                             ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:635:12: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+    sprintf(str, "\tMagCal Parameters %d\t%d\t%d\r\n", (uint8_t) MagCal[IMU_connected[i]][0], (uint8_t) MagCal[IMU_connected[i]][1], (uint8_t) MagCal[IMU_connected[i]][2]);
+            ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:636:16: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, str);
+                ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:636:29: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+         strcat(info_string, str);
+                             ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:639:21: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+             sprintf(str, "\tAcc (Norm on last column): %d\t%d\t%d\t%d\r\n", (int16_t) g_imu[i].accel_value[0], (int16_t) g_imu[i].accel_value[1],(int16_t) g_imu[i].accel_value[2], (int16_t) sqrt(g_imu[i].accel_value[0]*g_imu[i].accel_value[0] + g_imu[i].accel_value[1]*g_imu[i].accel_value[1] + g_imu[i].accel_value[2]*g_imu[i].accel_value[2]));
+                     ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:640:20: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+             strcat(info_string, str);
+                    ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:640:33: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+             strcat(info_string, str);
+                                 ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:644:21: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+             sprintf(str, "\tGyro: %d\t%d\t%d\r\n", (int16_t) g_imu[i].gyro_value[0], (int16_t) g_imu[i].gyro_value[1],(int16_t) g_imu[i].gyro_value[2]);
+                     ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:645:20: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+             strcat(info_string, str);
+                    ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:645:33: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+             strcat(info_string, str);
+                                 ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:649:21: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+             sprintf(str, "\tMag: %d\t%d\t%d\r\n", (int16_t) g_imu[i].mag_value[0], (int16_t) g_imu[i].mag_value[1],(int16_t) g_imu[i].mag_value[2]);
+                     ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:650:20: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+             strcat(info_string, str);
+                    ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:650:33: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+             strcat(info_string, str);
+                                 ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:654:21: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+             sprintf(str, "\tQuat (Norm on last column): %.3f\t%.3f\t%.3f\t%.3f\t%.3f\r\n", (float) g_imu[i].quat_value[0], (float) g_imu[i].quat_value[1],(float) g_imu[i].quat_value[2], (float) g_imu[i].quat_value[3] , (float)sqrt(g_imu[i].quat_value[0]*g_imu[i].quat_value[0]+g_imu[i].quat_value[1]*g_imu[i].quat_value[1]+g_imu[i].quat_value[2]*g_imu[i].quat_value[2]+g_imu[i].quat_value[3]*g_imu[i].quat_value[3]));
+                     ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:655:20: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+             strcat(info_string, str);
+                    ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:655:33: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+             strcat(info_string, str);
+                                 ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:659:21: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+             sprintf(str, "\tTemperature: %d\r\n", (int16_t) g_imu[i].temp_value);
+                     ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:660:20: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+             strcat(info_string, str);
+                    ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:660:33: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+             strcat(info_string, str);
+                                 ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:664:9: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+  strcat(info_string, "\r\n");
+         ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:666:13: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+     sprintf(str, "Time between two reading cycles: %.3f ms", execution_time_ms);
+             ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:667:12: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+     strcat(info_string, str);
+            ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:667:25: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+     strcat(info_string, str);
+                         ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:668:12: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+     strcat(info_string, "\r\n");
+            ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:670:10: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+  sprintf(str, "Time between two reading cycles: %ld us", (uint32_t)(execution_time_us));
+          ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdio.h:244:5: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ int _EXFUN(sprintf, (char *__restrict, const char *__restrict, ...)
+     ^
+..\Src\User_Functions\command_processing.c:671:12: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+     strcat(info_string, str);
+            ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:671:25: warning: pointer targets in passing argument 2 of 'strcat' differ in signedness [-Wpointer-sign]
+     strcat(info_string, str);
+                         ^~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'const char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:672:12: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+     strcat(info_string, "\r\n");
+            ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c:673:12: warning: pointer targets in passing argument 1 of 'strcat' differ in signedness [-Wpointer-sign]
+     strcat(info_string, "\r\n");
+            ^~~~~~~~~~~
+In file included from c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\stdlib.h:11:0,
+                 from ..\Src\User_Functions\globals.h:50,
+                 from ..\Src\User_Functions\command_processing.h:50,
+                 from ..\Src\User_Functions\command_processing.c:47:
+c:\program files (x86)\atollic\truestudio for stm32 9.2.0\armtools\arm-atollic-eabi\include\string.h:30:8: note: expected 'char * restrict' but argument is of type 'unsigned char *'
+ char  *_EXFUN(strcat,(char *__restrict, const char *__restrict));
+        ^
+..\Src\User_Functions\command_processing.c: In function 'commWrite':
+..\Src\User_Functions\command_processing.c:741:11: warning: unused variable 'packet_lenght_high' [-Wunused-variable]
+   uint8_t packet_lenght_high = aux_var >> 8;
+           ^~~~~~~~~~~~~~~~~~
+..\Src\User_Functions\command_processing.c: In function 'memStore':
+..\Src\User_Functions\command_processing.c:806:12: warning: unused variable 'aux_var' [-Wunused-variable]
+   uint16_t aux_var[blocks];
+            ^~~~~~~
+..\Src\User_Functions\command_processing.c:805:21: warning: unused variable 'error' [-Wunused-variable]
+   HAL_StatusTypeDef error;
+                     ^~~~~
+..\Src\User_Functions\command_processing.c: In function 'memRecall':
+..\Src\User_Functions\command_processing.c:846:11: warning: unused variable 'aux_var' [-Wunused-variable]
+  uint16_t aux_var[blocks];
+           ^~~~~~~
+..\Src\User_Functions\command_processing.c: In function 'cmd_get_imu_readings':
+..\Src\User_Functions\command_processing.c:1047:14: warning: unused variable 'quat_int_scale' [-Wunused-variable]
+     uint16_t quat_int_scale = 20000;
+              ^~~~~~~~~~~~~~
+..\Src\User_Functions\command_processing.c: In function 'cmd_set_inputs':
+..\Src\User_Functions\command_processing.c:1553:9: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+         g_refNew.curr = *((int16_t *) &g_rx.buffer[1]);
+         ^~~~~~~~
+..\Src\User_Functions\command_processing.c:1557:13: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+             g_refNew.pwm = *((int16_t *) &g_rx.buffer[1]);
+             ^~~~~~~~
+..\Src\User_Functions\command_processing.c:1560:13: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+             g_refNew.pos = *((int16_t *) &g_rx.buffer[1]);   // motor 1
+             ^~~~~~~~
+..\Src\User_Functions\command_processing.c: In function 'cmd_get_inputs':
+..\Src\User_Functions\command_processing.c:1621:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     *((int16_t *) &packet_data[1]) = (int16_t) (g_refOld.pos  >> g_mem.res[0]);
+     ^
+..\Src\User_Functions\command_processing.c: In function 'cmd_get_currents':
+..\Src\User_Functions\command_processing.c:1640:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     *((int16_t *) &packet_data[1]) = (int16_t) g_measOld.curr; //Real Current
+     ^
+..\Src\User_Functions\command_processing.c:1641:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     *((int16_t *) &packet_data[3]) = (int16_t) g_measOld.estim_curr; //Estimated Current
+     ^
+..\Src\User_Functions\command_processing.c: In function 'cmd_get_velocities':
+..\Src\User_Functions\command_processing.c:1662:9: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+         *((int16_t *) &packet_data[(index << 1) + 1]) = (int16_t) (g_measOld.vel[index] >> g_mem.res[index]);
+         ^
+..\Src\User_Functions\command_processing.c: In function 'cmd_get_accelerations':
+..\Src\User_Functions\command_processing.c:1684:9: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+         *((int16_t *) &packet_data[(index << 1) + 1]) = (int16_t)(g_measOld.acc[index] >> g_mem.res[index]);
+         ^
+..\Src\User_Functions\command_processing.c: In function 'memStore':
+..\Src\User_Functions\command_processing.c:806:3: warning: 'blocks' is used uninitialized in this function [-Wuninitialized]
+   uint16_t aux_var[blocks];
+   ^~~~~~~~
+..\Src\User_Functions\command_processing.c: In function 'memRecall':
+..\Src\User_Functions\command_processing.c:846:2: warning: 'blocks' is used uninitialized in this function [-Wuninitialized]
+  uint16_t aux_var[blocks];
+  ^~~~~~~~
+arm-atollic-eabi-gcc -o STM32_Firmware_TrueStudio.elf Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_adc_ex.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_cortex.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dma_ex.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ex.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_flash_ramfunc.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_gpio.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_pwr_ex.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_rcc_ex.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_spi.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_tim_ex.o Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.o Src\User_Functions\Encoder_functions.o Src\User_Functions\IMU_functions.o Src\User_Functions\command_processing.o Src\User_Functions\dwt_delay.o Src\User_Functions\globals.o Src\User_Functions\interruptions.o Src\User_Functions\utils.o Src\main.o Src\stm32f4xx_hal_msp.o Src\stm32f4xx_it.o Src\system_stm32f4xx.o startup\startup_stm32f446xx.o -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T../STM32F446RE_FLASH.ld -specs=nosys.specs -static -Wl,-Map=STM32_Firmware_TrueStudio.map -Wl,--gc-sections -Wl,--defsym=malloc_getpagesize_P=0x80 -Wl,--start-group -lc -lm -Wl,--end-group -specs=nano.specs 
+C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.2.0\ide\jre\bin\java -jar C:\Program Files (x86)\Atollic\TrueSTUDIO for STM32 9.2.0\Tools\arm-atollic-reports.jar convert-hex sizeinfo list STM32_Firmware_TrueStudio.elf 
+Generate build reports...
+Converting build output to hex
+Output sent to: STM32_Firmware_TrueStudio.hex
+Converting build output to hex done
+Print size information
+   text	   data	    bss	    dec	    hex	filename
+  33664	   2628	   6644	  42936	   a7b8	STM32_Firmware_TrueStudio.elf
+Print size information done
+Generate listing file
+Output sent to: STM32_Firmware_TrueStudio.list
+Generate listing file done
+Generate build reports done
+
+11:12:48 Build Finished (took 1s.339ms)
+

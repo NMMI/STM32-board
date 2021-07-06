@@ -1,0 +1,16 @@
+IMU_functions.c:305:6:ChipSelector	8	static
+IMU_functions.c:715:6:WriteControlRegister	16	static
+IMU_functions.c:159:6:InitIMU	8	static
+IMU_functions.c:234:6:InitIMUMagCal	8	static
+IMU_functions.c:725:9:ReadControlRegister	24	static
+IMU_functions.c:740:6:SPI_delay	0	static
+IMU_functions.c:450:6:ReadAcc	24	static
+IMU_functions.c:497:6:ReadGyro	24	static
+IMU_functions.c:617:6:ReadQuat	136	static
+IMU_functions.c:544:6:ReadMag	24	static
+IMU_functions.c:591:6:ReadMagCal	24	static
+IMU_functions.c:66:6:InitIMUgeneral	112	static
+IMU_functions.c:51:6:ImuReset	8	static
+IMU_functions.c:692:6:ReadTemp	16	static
+IMU_functions.c:438:6:ReadIMU	16	static
+IMU_functions.c:393:6:ReadAllIMUs	24	static

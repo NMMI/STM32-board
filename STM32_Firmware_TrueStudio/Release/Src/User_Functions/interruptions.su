@@ -1,0 +1,3 @@
+interruptions.c:83:6:interrupt_manager	24	static
+interruptions.c:290:6:chip_temperature	8	static
+interruptions.c:206:6:function_scheduler	16	static

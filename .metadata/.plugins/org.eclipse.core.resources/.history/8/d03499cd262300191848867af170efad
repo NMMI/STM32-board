@@ -1,0 +1,124 @@
+// ----------------------------------------------------------------------------
+// BSD 3-Clause License
+
+// Copyright (c) 2016, qbrobotics
+// Copyright (c) 2017-2018, Centro "E.Piaggio"
+// All rights reserved.
+
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+
+// * Redistributions of source code must retain the above copyright notice, this
+//   list of conditions and the following disclaimer.
+
+// * Redistributions in binary form must reproduce the above copyright notice,
+//   this list of conditions and the following disclaimer in the documentation
+//   and/or other materials provided with the distribution.
+
+// * Neither the name of the copyright holder nor the names of its
+//   contributors may be used to endorse or promote products derived from
+//   this software without specific prior written permission.
+
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+// CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+// OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// POSSIBILITY OF SUCH DAMAGE.
+// ----------------------------------------------------------------------------
+
+/**
+* \file         globals.c
+*
+* \brief        Global variables.
+* \date         February 01, 2018
+* \author       _Centro "E.Piaggio"_
+* \copyright    (C) 2012-2016 qbrobotics. All rights reserved.
+* \copyright    (C) 2017-2018 Centro "E.Piaggio". All rights reserved.
+*/
+
+//=================================================================     includes
+#include "globals.h"
+//=============================================      global variables definition
+
+UART_HandleTypeDef huart1;
+SPI_HandleTypeDef hspi1;  // Used for the IMU
+SPI_HandleTypeDef hspi2;  // Used for the Encoders
+ADC_HandleTypeDef hadc1;
+DMA_HandleTypeDef hdma_hadc1;
+
+FLASH_EraseInitTypeDef mem_settings;
+
+struct st_data  g_rx;           		// Incoming Data
+struct st_mem   g_mem, c_mem;   		// Memory
+struct st_meas  g_meas, g_measOld;      // Measurements
+struct st_ref   g_ref, g_refNew, g_refOld;  // Reference variables //
+
+ADC_ChannelConfTypeDef sConfig_global;
+//uint16_t adc_aux_var = 0;
+uint32_t ADCValues[4];
+
+// Timer value for debug field
+uint32_t timer_value;
+uint32_t timer_value0;
+float execution_time_ms;
+float execution_time_us;
+
+// Bit flag
+uint8_t interrupt_flag = 0;
+uint8_t Rx_data;
+uint8_t Rx_counter = 0;
+uint8_t Rx_Buffer_size = 20;
+uint8_t Rx_buffer[20];
+
+// IMU variables
+uint8_t N_IMU_Connected = 0;
+uint8_t IMU_connected[N_IMU_MAX];
+int imus_data_size;
+int single_imu_size[N_IMU_MAX];
+
+struct st_imu g_imu[N_IMU_MAX];
+struct st_imu g_imuNew[N_IMU_MAX];
+
+uint8_t Accel[N_IMU_MAX][6];
+uint8_t Gyro[N_IMU_MAX][6];
+uint8_t Mag[N_IMU_MAX][6];
+uint8_t MagCal[N_IMU_MAX][3];
+uint8_t Temp[N_IMU_MAX][2];
+float Quat[N_IMU_MAX][4];
+
+//uint8_t packet_data_param[PARAM_BYTE_SLOT + 6*PARAM_BYTE_SLOT + 9*PARAM_BYTE_SLOT + PARAM_BYTE_SLOT + PARAM_BYTE_SLOT*N_IMU_MAX + PARAM_BYTE_SLOT + PARAM_MENU_SLOT + PARAM_BYTE_SLOT + 1] = " ";
+
+// Encoder Variables
+short Encoder_Value[N_ENCODER_MAX][8]; // 18 CS pins which of one can contain 8 encoders
+short Encoder_Check[N_ENCODER_MAX][8];
+uint8_t Encoder_Map[N_ENCODER_MAX]; // Used to map how many encoders are connected to each CS pin, there are 18 CS on the board and each of them can contain 8 encoders
+uint8_t N_Encoder_Connected;
+uint8_t Encoder_connected[N_ENCODER_MAX];
+
+uint16_t encoder_aux_1 = 0;
+uint16_t encoder_aux_2 = 0;
+uint16_t encoder_aux_3 = 0;
+uint16_t encoder_aux_4 = 0;
+uint16_t encoder_aux_5 = 0;
+uint16_t encoder_aux_6 = 0;
+uint16_t encoder_aux_7 = 0;
+uint16_t encoder_aux_8 = 0;
+
+uint16_t check_aux_1 = 0;
+uint16_t check_aux_2 = 0;
+uint16_t check_aux_3 = 0;
+uint16_t check_aux_4 = 0;
+uint16_t check_aux_5 = 0;
+uint16_t check_aux_6 = 0;
+uint16_t check_aux_7 = 0;
+uint16_t check_aux_8 = 0;
+
+uint8_t change_ext_ref_flag = FALSE;          // This flag is set when an external reference command is received
+
+/* END OF FILE */

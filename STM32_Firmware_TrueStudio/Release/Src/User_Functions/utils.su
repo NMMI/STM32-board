@@ -1,0 +1,6 @@
+utils.c:53:7:invSqrt	0	static
+utils.c:66:6:v3_normalize	8	static
+utils.c:78:6:v4_normalize	8	static
+utils.c:91:6:reset_counters	0	static
+utils.c:109:6:BootLoaderInit	16	static
+utils.c:131:10:float2bit	0	static

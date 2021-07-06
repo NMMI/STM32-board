@@ -1,0 +1,657 @@
+// ----------------------------------------------------------------------------
+// BSD 3-Clause License
+
+// Copyright (c) 2016, qbrobotics
+// Copyright (c) 2017-2018, Centro "E.Piaggio"
+// All rights reserved.
+
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+
+// * Redistributions of source code must retain the above copyright notice, this
+//   list of conditions and the following disclaimer.
+
+// * Redistributions in binary form must reproduce the above copyright notice,
+//   this list of conditions and the following disclaimer in the documentation
+//   and/or other materials provided with the distribution.
+
+// * Neither the name of the copyright holder nor the names of its
+//   contributors may be used to endorse or promote products derived from
+//   this software without specific prior written permission.
+
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+// CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+// OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// POSSIBILITY OF SUCH DAMAGE.
+// ----------------------------------------------------------------------------
+
+/**
+* \file         Encoder_functions.c
+*
+* \brief        Implementation of IMU module functions.
+* \date         February 01, 2018
+* \author       _Centro "E.Piaggio"_
+* \copyright    (C) 2012-2016 qbrobotics. All rights reserved.
+* \copyright    (C) 2017-2018 Centro "E.Piaggio". All rights reserved.
+*/
+
+#include "Encoder_functions.h"
+#include "IMU_functions.h"
+
+/*******************************************************************************
+* Function Name: Encoder Reset
+*********************************************************************************/
+void EncoderReset() {
+	
+}
+
+/********************************************************************************
+* Function Name: InitIMUGeneral                                                 *
+*********************************************************************************/
+void InitEncoderGeneral()
+{
+
+    uint8_t k_encoder=0;
+    for (k_encoder=0; k_encoder<N_ENCODER_MAX; k_encoder++) {
+    	InitEncoder(k_encoder);
+    	HAL_Delay(5);
+    }
+    HAL_Delay(100);
+
+}
+	
+/*******************************************************************************
+* Function Name: Encoder Initialization
+*********************************************************************************/
+void InitEncoder(uint8_t n){ // [GS] a volte vede più encoder del dovuto e fa cazzate
+
+	// Data from encoder //
+	// 12 bit = encoder readings (D11 - D0 with MSB)
+	//  1 bit = OCF = Offset Compensation Finished, if is set the encoder is ready to send data
+	//  1 bit = COF = Cordic Overflow, if is set there is an "out of range" error
+	//  1 bit = LIN = Linearity Alarm, if is set there is a "critical output linearity"
+	//  1 bit = Mag INC = Magnetic Field Increase, if the magnet move towards to the chip, it is set to 1
+	//  1 bit = Mag DEC = Magnetic Field Decrease, if the magnet move away from the chip, it is set to 1
+	//  1 bit = Even Par = Parity Bit
+	// When the encoder works properly the OCF=1, COF=0, LIN=0, Mag INC = 0 and Mag DEC = 0
+	const uint8_t N_Bit = (18*8) + (8);
+	const uint8_t E_format = 8;
+	const uint8_t N_Cycles = (uint8_t)((N_Bit/E_format) + (N_Bit%E_format != 0));
+	uint8_t enc_rx_buffer[N_Cycles];
+	Encoder_Map[n] = 0;
+	ChipSelector(n);
+	while (HAL_SPI_Receive(&hspi2, &enc_rx_buffer[0], N_Cycles, HAL_MAX_DELAY) != HAL_OK);
+    ChipSelector(fake_encoder);
+
+    // Encoder 1
+    encoder_aux_1 = (uint16_t)(enc_rx_buffer[0]);
+    encoder_aux_1 = (((encoder_aux_1 & 0b01111111) << 5) | ((uint8_t)(enc_rx_buffer[1] >> 3)));
+    check_aux_1 = (uint16_t)(enc_rx_buffer[1]);
+    check_aux_1 = (((check_aux_1 & 0b00000111) << 2) | (enc_rx_buffer[2] >> 6));
+    if (((encoder_aux_1 << 5) | check_aux_1) != 0) {
+    	Encoder_Map[n]++;
+    	N_Encoder_Connected++;
+    }
+    // Encoder 2
+    encoder_aux_2 = (uint16_t)(enc_rx_buffer[2]);
+    encoder_aux_2 = (((encoder_aux_2 & 0b00001111) << 4) | (enc_rx_buffer[3]));
+    check_aux_2 = (uint16_t)(enc_rx_buffer[4]);
+    check_aux_2 = check_aux_2 >> 3;
+    if (((encoder_aux_2 << 5) | check_aux_2) != 0) {
+        Encoder_Map[n]++;
+        N_Encoder_Connected++;
+    }
+    // Encoder 3
+    encoder_aux_3 = (uint16_t)(enc_rx_buffer[4]);
+    encoder_aux_3 = (((encoder_aux_3 & 0b00000001) << 8) | (enc_rx_buffer[5]));
+    check_aux_3 = ((check_aux_3 << 3) | (enc_rx_buffer[6] >> 5));
+    check_aux_3 = (enc_rx_buffer[6] & 0b00011111);
+    if (((encoder_aux_3 << 5) | check_aux_3) != 0) {
+    	Encoder_Map[n]++;
+        N_Encoder_Connected++;
+    }
+    // Encoder 4
+    encoder_aux_4 = (uint16_t)(enc_rx_buffer[7]);
+    encoder_aux_4 = (((encoder_aux_4 & 0b00111111) << 6) | (enc_rx_buffer[8] >> 2));
+    check_aux_4 = (uint16_t)(enc_rx_buffer[8]);
+    check_aux_4 = (((check_aux_4 & 0b00000011) << 3) | (enc_rx_buffer[9] >> 5));
+    if (((encoder_aux_4 << 5) | check_aux_4) != 0) {
+    	Encoder_Map[n]++;
+        N_Encoder_Connected++;
+    }
+    // Encoder 5
+    encoder_aux_5 = (uint16_t)(enc_rx_buffer[9]);
+    encoder_aux_5 = ((encoder_aux_5 << 8) | (enc_rx_buffer[10]));
+    encoder_aux_5 = ((encoder_aux_5 << 1) | (enc_rx_buffer[11] >> 7));
+    check_aux_5 = (uint16_t)(enc_rx_buffer[11]);
+    check_aux_5 = ((check_aux_5 & 0b01111111) >> 2);
+    if (((encoder_aux_5 << 5) | check_aux_5) != 0) {
+    	Encoder_Map[n]++;
+        N_Encoder_Connected++;
+    }
+    // Encoder 6
+    encoder_aux_6 = (uint16_t)(enc_rx_buffer[12]);
+    encoder_aux_6 = ((encoder_aux_6 << 4) | (enc_rx_buffer[13] >> 4));
+    check_aux_6 = (((enc_rx_buffer[13] & 0b00001111) << 1) | (enc_rx_buffer[14] >> 7));
+    if (((encoder_aux_6 << 5) | check_aux_6) != 0) {
+    	Encoder_Map[n]++;
+        N_Encoder_Connected++;
+    }
+    // Encoder 7
+    encoder_aux_7 = (uint16_t)(enc_rx_buffer[14]);
+    encoder_aux_7 = (((encoder_aux_7 & 0b00011111) << 7) | (enc_rx_buffer[15] >> 1));
+    check_aux_7 = (((enc_rx_buffer[15] & 0b00000001) << 4) | (enc_rx_buffer[16] >> 4));
+    if (((encoder_aux_7 << 5) | check_aux_7) != 0) {
+    	Encoder_Map[n]++;
+        N_Encoder_Connected++;
+    }
+    // Encoder 8
+    encoder_aux_8 = (uint16_t)(enc_rx_buffer[16]);
+    encoder_aux_8 = (encoder_aux_8 << 6) | (enc_rx_buffer[17]);
+    encoder_aux_8 = ((encoder_aux_8 << 2) | (enc_rx_buffer[18] >> 6));
+    check_aux_8 = (uint16_t)(enc_rx_buffer[18]);
+    check_aux_8 = ((check_aux_8 & 0b00111111) >> 1);
+    if (((encoder_aux_8 << 5) | check_aux_8) != 0) {
+    	Encoder_Map[n]++;
+        N_Encoder_Connected++;
+    }
+	
+}	
+
+/********************************************************************************
+* Function Name: Read All Encoders
+*********************************************************************************/
+void ReadAllEncoders(){
+
+	static uint8_t k_encoder = 0;
+    for (k_encoder = 0; k_encoder < N_Encoder_Connected; k_encoder++){
+    	ReadEncoder(k_encoder);
+    }
+}
+
+/*******************************************************************************
+* Function Name: Read Encoder
+*********************************************************************************/
+void ReadEncoder(int n)
+{
+	uint8_t N_Encoder_CS = Encoder_Map[n];
+	const uint8_t N_Bit = (18*N_Encoder_CS) + (N_Encoder_CS);
+	const uint8_t E_format = 8;
+	const uint8_t N_Cycles = (uint8_t)((N_Bit/E_format) + (N_Bit%E_format != 0));
+	uint8_t enc_rx_buffer[N_Cycles];
+
+	// [GS] quando finisco di fare i test questa va ricontrollata in toto
+
+	ChipSelector(n);
+	while (HAL_SPI_Receive(&hspi2, &enc_rx_buffer[0], N_Cycles, HAL_MAX_DELAY) != HAL_OK);
+    ChipSelector(fake_encoder);
+
+	switch (N_Encoder_CS) {
+        case 1:
+            check_aux_1 = (uint16_t)(enc_rx_buffer[1]);
+            check_aux_1 = (((check_aux_1 & 0b00000111) << 2) | (enc_rx_buffer[2] >> 6));
+            Encoder_Check[n][0] = check_aux_1;
+            if (check_aux_1 == 16) {
+        		encoder_aux_1 = (uint16_t)(enc_rx_buffer[0]);
+        		encoder_aux_1 = (((encoder_aux_1 & 0b01111111) << 5) | ((uint8_t)(enc_rx_buffer[1] >> 3)));
+        		Encoder_Value[n][0] = encoder_aux_1;
+        	}
+            break;
+        case 2:
+            check_aux_1 = (uint16_t)(enc_rx_buffer[1]);
+            check_aux_1 = (((check_aux_1 & 0b00000111) << 2) | (enc_rx_buffer[2] >> 6));
+            Encoder_Check[n][0] = check_aux_1;
+            if (check_aux_1 == 16) {
+        		encoder_aux_1 = (uint16_t)(enc_rx_buffer[0]);
+        		encoder_aux_1 = (((encoder_aux_1 & 0b01111111) << 5) | ((uint8_t)(enc_rx_buffer[1] >> 3)));
+        		Encoder_Value[n][0] = encoder_aux_1;
+        	}
+        	check_aux_2 = (uint16_t)(enc_rx_buffer[4]);
+        	check_aux_2 = check_aux_2 >> 3;
+        	Encoder_Check[n][1] = check_aux_2;
+        	if (check_aux_2 == 16) {
+        	    encoder_aux_2 = (uint16_t)(enc_rx_buffer[2]);
+        		encoder_aux_2 = (((encoder_aux_2 & 0b00001111) << 4) | (enc_rx_buffer[3]));
+        		Encoder_Value[n][1] = encoder_aux_2;
+        	}
+            break;
+        case 3:
+            check_aux_1 = (uint16_t)(enc_rx_buffer[1]);
+            check_aux_1 = (((check_aux_1 & 0b00000111) << 2) | (enc_rx_buffer[2] >> 6));
+            Encoder_Check[n][0] = check_aux_1;
+            if (check_aux_1 == 16) {
+        		encoder_aux_1 = (uint16_t)(enc_rx_buffer[0]);
+        		encoder_aux_1 = (((encoder_aux_1 & 0b01111111) << 5) | ((uint8_t)(enc_rx_buffer[1] >> 3)));
+        		Encoder_Value[n][0] = encoder_aux_1;
+        	}
+        	check_aux_2 = (uint16_t)(enc_rx_buffer[4]);
+        	check_aux_2 = check_aux_2 >> 3;
+        	Encoder_Check[n][1] = check_aux_2;
+        	if (check_aux_2 == 16) {
+        	    encoder_aux_2 = (uint16_t)(enc_rx_buffer[2]);
+        		encoder_aux_2 = (((encoder_aux_2 & 0b00001111) << 4) | (enc_rx_buffer[3]));
+        		Encoder_Value[n][1] = encoder_aux_2;
+        	}
+        	check_aux_3 = ((check_aux_3 << 3) | (enc_rx_buffer[6] >> 5));
+        	check_aux_3 = (enc_rx_buffer[6] & 0b00011111);
+        	Encoder_Check[n][2] = check_aux_3;
+        	if (check_aux_3 == 16) {
+        		encoder_aux_3 = (uint16_t)(enc_rx_buffer[4]);
+        		encoder_aux_3 = (((encoder_aux_3 & 0b00000001) << 8) | (enc_rx_buffer[5]));
+        		Encoder_Value[n][2] = encoder_aux_3;
+        	}
+            break;
+        case 4:
+            check_aux_1 = (uint16_t)(enc_rx_buffer[1]);
+            check_aux_1 = (((check_aux_1 & 0b00000111) << 2) | (enc_rx_buffer[2] >> 6));
+            Encoder_Check[n][0] = check_aux_1;
+            if (check_aux_1 == 16) {
+        		encoder_aux_1 = (uint16_t)(enc_rx_buffer[0]);
+        		encoder_aux_1 = (((encoder_aux_1 & 0b01111111) << 5) | ((uint8_t)(enc_rx_buffer[1] >> 3)));
+        		Encoder_Value[n][0] = encoder_aux_1;
+        	}
+        	check_aux_2 = (uint16_t)(enc_rx_buffer[4]);
+        	check_aux_2 = check_aux_2 >> 3;
+        	Encoder_Check[n][1] = check_aux_2;
+        	if (check_aux_2 == 16) {
+        	    encoder_aux_2 = (uint16_t)(enc_rx_buffer[2]);
+        		encoder_aux_2 = (((encoder_aux_2 & 0b00001111) << 4) | (enc_rx_buffer[3]));
+        		Encoder_Value[n][1] = encoder_aux_2;
+        	}
+        	check_aux_3 = ((check_aux_3 << 3) | (enc_rx_buffer[6] >> 5));
+        	check_aux_3 = (enc_rx_buffer[6] & 0b00011111);
+        	Encoder_Check[n][2] = check_aux_3;
+        	if (check_aux_3 == 16) {
+        		encoder_aux_3 = (uint16_t)(enc_rx_buffer[4]);
+        		encoder_aux_3 = (((encoder_aux_3 & 0b00000001) << 8) | (enc_rx_buffer[5]));
+        		Encoder_Value[n][2] = encoder_aux_3;
+        	}
+        	check_aux_4 = (uint16_t)(enc_rx_buffer[8]);
+        	check_aux_4 = (((check_aux_4 & 0b00000011) << 3) | (enc_rx_buffer[9] >> 5));
+        	Encoder_Check[n][3] = check_aux_4;
+			if (check_aux_4 == 16) {
+				encoder_aux_4 = (uint16_t)(enc_rx_buffer[7]);
+        		encoder_aux_4 = (((encoder_aux_4 & 0b00111111) << 6) | (enc_rx_buffer[8] >> 2));
+        		Encoder_Value[n][3] = encoder_aux_4;
+			}
+            break;
+        case 5:
+            check_aux_1 = (uint16_t)(enc_rx_buffer[1]);
+            check_aux_1 = (((check_aux_1 & 0b00000111) << 2) | (enc_rx_buffer[2] >> 6));
+            Encoder_Check[n][0] = check_aux_1;
+            if (check_aux_1 == 16) {
+        		encoder_aux_1 = (uint16_t)(enc_rx_buffer[0]);
+        		encoder_aux_1 = (((encoder_aux_1 & 0b01111111) << 5) | ((uint8_t)(enc_rx_buffer[1] >> 3)));
+        		Encoder_Value[n][0] = encoder_aux_1;
+        	}
+        	check_aux_2 = (uint16_t)(enc_rx_buffer[4]);
+        	check_aux_2 = check_aux_2 >> 3;
+        	Encoder_Check[n][1] = check_aux_2;
+        	if (check_aux_2 == 16) {
+        	    encoder_aux_2 = (uint16_t)(enc_rx_buffer[2]);
+        		encoder_aux_2 = (((encoder_aux_2 & 0b00001111) << 4) | (enc_rx_buffer[3]));
+        		Encoder_Value[n][1] = encoder_aux_2;
+        	}
+        	check_aux_3 = ((check_aux_3 << 3) | (enc_rx_buffer[6] >> 5));
+        	check_aux_3 = (enc_rx_buffer[6] & 0b00011111);
+        	Encoder_Check[n][2] = check_aux_3;
+        	if (check_aux_3 == 16) {
+        		encoder_aux_3 = (uint16_t)(enc_rx_buffer[4]);
+        		encoder_aux_3 = (((encoder_aux_3 & 0b00000001) << 8) | (enc_rx_buffer[5]));
+        		Encoder_Value[n][2] = encoder_aux_3;
+        	}
+        	check_aux_4 = (uint16_t)(enc_rx_buffer[8]);
+        	check_aux_4 = (((check_aux_4 & 0b00000011) << 3) | (enc_rx_buffer[9] >> 5));
+        	Encoder_Check[n][3] = check_aux_4;
+        	if (check_aux_4 == 16) {
+				encoder_aux_4 = (uint16_t)(enc_rx_buffer[7]);
+        		encoder_aux_4 = (((encoder_aux_4 & 0b00111111) << 6) | (enc_rx_buffer[8] >> 2));
+        		Encoder_Value[n][3] = encoder_aux_4;
+			}
+            check_aux_5 = (uint16_t)(enc_rx_buffer[11]);
+        	check_aux_5 = ((check_aux_5 & 0b01111111) >> 2);
+        	Encoder_Check[n][4] = check_aux_5;
+        	if (check_aux_5 == 16) {
+        		encoder_aux_5 = (uint16_t)(enc_rx_buffer[9]);
+        		encoder_aux_5 = ((encoder_aux_5 << 8) | (enc_rx_buffer[10]));
+        		encoder_aux_5 = ((encoder_aux_5 << 1) | (enc_rx_buffer[11] >> 7));
+        		Encoder_Value[n][4] = encoder_aux_5;
+        	}
+        	break;
+        case 6:
+            check_aux_1 = (uint16_t)(enc_rx_buffer[1]);
+            check_aux_1 = (((check_aux_1 & 0b00000111) << 2) | (enc_rx_buffer[2] >> 6));
+            Encoder_Check[n][0] = check_aux_1;
+            if (check_aux_1 == 16) {
+        		encoder_aux_1 = (uint16_t)(enc_rx_buffer[0]);
+        		encoder_aux_1 = (((encoder_aux_1 & 0b01111111) << 5) | ((uint8_t)(enc_rx_buffer[1] >> 3)));
+        		Encoder_Value[n][0] = encoder_aux_1;
+        	}
+        	check_aux_2 = (uint16_t)(enc_rx_buffer[4]);
+        	check_aux_2 = check_aux_2 >> 3;
+        	Encoder_Check[n][1] = check_aux_2;
+        	if (check_aux_2 == 16) {
+        	    encoder_aux_2 = (uint16_t)(enc_rx_buffer[2]);
+        		encoder_aux_2 = (((encoder_aux_2 & 0b00001111) << 4) | (enc_rx_buffer[3]));
+        		Encoder_Value[n][1] = encoder_aux_2;
+        	}
+        	check_aux_3 = ((check_aux_3 << 3) | (enc_rx_buffer[6] >> 5));
+        	check_aux_3 = (enc_rx_buffer[6] & 0b00011111);
+        	Encoder_Check[n][2] = check_aux_3;
+        	if (check_aux_3 == 16) {
+        		encoder_aux_3 = (uint16_t)(enc_rx_buffer[4]);
+        		encoder_aux_3 = (((encoder_aux_3 & 0b00000001) << 8) | (enc_rx_buffer[5]));
+        		Encoder_Value[n][2] = encoder_aux_3;
+        	}
+        	check_aux_4 = (uint16_t)(enc_rx_buffer[8]);
+        	check_aux_4 = (((check_aux_4 & 0b00000011) << 3) | (enc_rx_buffer[9] >> 5));
+        	Encoder_Check[n][3] = check_aux_4;
+        	if (check_aux_4 == 16) {
+				encoder_aux_4 = (uint16_t)(enc_rx_buffer[7]);
+        		encoder_aux_4 = (((encoder_aux_4 & 0b00111111) << 6) | (enc_rx_buffer[8] >> 2));
+        		Encoder_Value[n][3] = encoder_aux_4;
+			}
+            check_aux_5 = (uint16_t)(enc_rx_buffer[11]);
+        	check_aux_5 = ((check_aux_5 & 0b01111111) >> 2);
+        	Encoder_Check[n][4] = check_aux_5;
+        	if (check_aux_5 == 16) {
+        		encoder_aux_5 = (uint16_t)(enc_rx_buffer[9]);
+        		encoder_aux_5 = ((encoder_aux_5 << 8) | (enc_rx_buffer[10]));
+        		encoder_aux_5 = ((encoder_aux_5 << 1) | (enc_rx_buffer[11] >> 7));
+        		Encoder_Value[n][4] = encoder_aux_5;
+        	}
+        	check_aux_6 = (((enc_rx_buffer[13] & 0b00001111) << 1) | (enc_rx_buffer[14] >> 7));
+        	Encoder_Check[n][5] = check_aux_6;
+        	if (check_aux_6 == 16) {
+       	   		encoder_aux_6 = (uint16_t)(enc_rx_buffer[12]);
+        		encoder_aux_6 = ((encoder_aux_6 << 4) | (enc_rx_buffer[13] >> 4));
+				Encoder_Value[n][5] = encoder_aux_6;
+			}
+            break;
+        case 7:
+            check_aux_1 = (uint16_t)(enc_rx_buffer[1]);
+            check_aux_1 = (((check_aux_1 & 0b00000111) << 2) | (enc_rx_buffer[2] >> 6));
+            Encoder_Check[n][0] = check_aux_1;
+            if (check_aux_1 == 16) {
+        		encoder_aux_1 = (uint16_t)(enc_rx_buffer[0]);
+        		encoder_aux_1 = (((encoder_aux_1 & 0b01111111) << 5) | ((uint8_t)(enc_rx_buffer[1] >> 3)));
+        		Encoder_Value[n][0] = encoder_aux_1;
+        	}
+        	check_aux_2 = (uint16_t)(enc_rx_buffer[4]);
+        	check_aux_2 = check_aux_2 >> 3;
+        	Encoder_Check[n][1] = check_aux_2;
+        	if (check_aux_2 == 16) {
+        	    encoder_aux_2 = (uint16_t)(enc_rx_buffer[2]);
+        		encoder_aux_2 = (((encoder_aux_2 & 0b00001111) << 4) | (enc_rx_buffer[3]));
+        		Encoder_Value[n][1] = encoder_aux_2;
+        	}
+        	check_aux_3 = ((check_aux_3 << 3) | (enc_rx_buffer[6] >> 5));
+        	check_aux_3 = (enc_rx_buffer[6] & 0b00011111);
+        	Encoder_Check[n][2] = check_aux_3;
+        	if (check_aux_3 == 16) {
+        		encoder_aux_3 = (uint16_t)(enc_rx_buffer[4]);
+        		encoder_aux_3 = (((encoder_aux_3 & 0b00000001) << 8) | (enc_rx_buffer[5]));
+        		Encoder_Value[n][2] = encoder_aux_3;
+        	}
+        	check_aux_4 = (uint16_t)(enc_rx_buffer[8]);
+        	check_aux_4 = (((check_aux_4 & 0b00000011) << 3) | (enc_rx_buffer[9] >> 5));
+        	Encoder_Check[n][3] = check_aux_4;
+        	if (check_aux_4 == 16) {
+				encoder_aux_4 = (uint16_t)(enc_rx_buffer[7]);
+        		encoder_aux_4 = (((encoder_aux_4 & 0b00111111) << 6) | (enc_rx_buffer[8] >> 2));
+        		Encoder_Value[n][3] = encoder_aux_4;
+			}
+            check_aux_5 = (uint16_t)(enc_rx_buffer[11]);
+        	check_aux_5 = ((check_aux_5 & 0b01111111) >> 2);
+        	Encoder_Check[n][4] = check_aux_5;
+        	if (check_aux_5 == 16) {
+        		encoder_aux_5 = (uint16_t)(enc_rx_buffer[9]);
+        		encoder_aux_5 = ((encoder_aux_5 << 8) | (enc_rx_buffer[10]));
+        		encoder_aux_5 = ((encoder_aux_5 << 1) | (enc_rx_buffer[11] >> 7));
+        		Encoder_Value[n][4] = encoder_aux_5;
+        	}
+        	check_aux_6 = (((enc_rx_buffer[13] & 0b00001111) << 1) | (enc_rx_buffer[14] >> 7));
+        	Encoder_Check[n][5] = check_aux_6;
+        	if (check_aux_6 == 16) {
+       	   		encoder_aux_6 = (uint16_t)(enc_rx_buffer[12]);
+        		encoder_aux_6 = ((encoder_aux_6 << 4) | (enc_rx_buffer[13] >> 4));
+				Encoder_Value[n][5] = encoder_aux_6;
+			}
+         	check_aux_7 = (((enc_rx_buffer[15] & 0b00000001) << 4) | (enc_rx_buffer[16] >> 4));
+         	Encoder_Check[n][6] = check_aux_7;
+         	if (check_aux_7 == 16) {
+        	    encoder_aux_7 = (uint16_t)(enc_rx_buffer[14]);
+        		encoder_aux_7 = (((encoder_aux_7 & 0b00011111) << 7) | (enc_rx_buffer[15] >> 1));
+        		Encoder_Value[n][6] = encoder_aux_7;
+        	}
+            break;
+        case 8:
+            check_aux_1 = (uint16_t)(enc_rx_buffer[1]);
+            check_aux_1 = (((check_aux_1 & 0b00000111) << 2) | (enc_rx_buffer[2] >> 6));
+            Encoder_Check[n][0] = check_aux_1;
+            if (check_aux_1 == 16) {
+        		encoder_aux_1 = (uint16_t)(enc_rx_buffer[0]);
+        		encoder_aux_1 = (((encoder_aux_1 & 0b01111111) << 5) | ((uint8_t)(enc_rx_buffer[1] >> 3)));
+        		Encoder_Value[n][0] = encoder_aux_1;
+        	}
+        	check_aux_2 = (uint16_t)(enc_rx_buffer[4]);
+        	check_aux_2 = check_aux_2 >> 3;
+        	Encoder_Check[n][1] = check_aux_2;
+        	if (check_aux_2 == 16) {
+        	    encoder_aux_2 = (uint16_t)(enc_rx_buffer[2]);
+        		encoder_aux_2 = (((encoder_aux_2 & 0b00001111) << 4) | (enc_rx_buffer[3]));
+        		Encoder_Value[n][1] = encoder_aux_2;
+        	}
+        	check_aux_3 = ((check_aux_3 << 3) | (enc_rx_buffer[6] >> 5));
+        	check_aux_3 = (enc_rx_buffer[6] & 0b00011111);
+        	Encoder_Check[n][2] = check_aux_3;
+        	if (check_aux_3 == 16) {
+        		encoder_aux_3 = (uint16_t)(enc_rx_buffer[4]);
+        		encoder_aux_3 = (((encoder_aux_3 & 0b00000001) << 8) | (enc_rx_buffer[5]));
+        		Encoder_Value[n][2] = encoder_aux_3;
+        	}
+        	check_aux_4 = (uint16_t)(enc_rx_buffer[8]);
+        	check_aux_4 = (((check_aux_4 & 0b00000011) << 3) | (enc_rx_buffer[9] >> 5));
+        	Encoder_Check[n][3] = check_aux_4;
+        	if (check_aux_4 == 16) {
+				encoder_aux_4 = (uint16_t)(enc_rx_buffer[7]);
+        		encoder_aux_4 = (((encoder_aux_4 & 0b00111111) << 6) | (enc_rx_buffer[8] >> 2));
+        		Encoder_Value[n][3] = encoder_aux_4;
+			}
+            check_aux_5 = (uint16_t)(enc_rx_buffer[11]);
+        	check_aux_5 = ((check_aux_5 & 0b01111111) >> 2);
+        	Encoder_Check[n][4] = check_aux_5;
+        	if (check_aux_5 == 16) {
+        		encoder_aux_5 = (uint16_t)(enc_rx_buffer[9]);
+        		encoder_aux_5 = ((encoder_aux_5 << 8) | (enc_rx_buffer[10]));
+        		encoder_aux_5 = ((encoder_aux_5 << 1) | (enc_rx_buffer[11] >> 7));
+        		Encoder_Value[n][4] = encoder_aux_5;
+        	}
+        	check_aux_6 = (((enc_rx_buffer[13] & 0b00001111) << 1) | (enc_rx_buffer[14] >> 7));
+        	Encoder_Check[n][5] = check_aux_6;
+        	if (check_aux_6 == 16) {
+       	   		encoder_aux_6 = (uint16_t)(enc_rx_buffer[12]);
+        		encoder_aux_6 = ((encoder_aux_6 << 4) | (enc_rx_buffer[13] >> 4));
+				Encoder_Value[n][5] = encoder_aux_6;
+			}
+         	check_aux_7 = (((enc_rx_buffer[15] & 0b00000001) << 4) | (enc_rx_buffer[16] >> 4));
+         	Encoder_Check[n][6] = check_aux_7;
+         	if (check_aux_7 == 16) {
+        	    encoder_aux_7 = (uint16_t)(enc_rx_buffer[14]);
+        		encoder_aux_7 = (((encoder_aux_7 & 0b00011111) << 7) | (enc_rx_buffer[15] >> 1));
+        		Encoder_Value[n][6] = encoder_aux_7;
+        	}
+        	check_aux_8 = (uint16_t)(enc_rx_buffer[18]);
+        	check_aux_8 = ((check_aux_8 & 0b00111111) >> 1);
+        	Encoder_Check[n][7] = check_aux_8;
+        	if (check_aux_8 == 16) {
+        		encoder_aux_8 = (uint16_t)(enc_rx_buffer[16]);
+        		encoder_aux_8 = (encoder_aux_8 << 6) | (enc_rx_buffer[17]);
+        		encoder_aux_8 = ((encoder_aux_8 << 2) | (enc_rx_buffer[18] >> 6));
+        		Encoder_Value[n][7] = encoder_aux_8;
+        	}
+            break;
+        default:
+            break;
+    }
+	/*
+	// [GS] Questa parte serve a verificare le misure degli encoder
+    if (n == 17) {
+
+    	ChipSelector(n);
+    	while (HAL_SPI_Receive(&hspi2, &enc_rx_buffer[0], 19, HAL_MAX_DELAY) != HAL_OK); // [GS] qui va ricontrollato il type di enc_rx_buffer
+        ChipSelector(fake_encoder);
+        // Encoder 1
+        encoder_aux_1 = (uint16_t)(enc_rx_buffer[0]);
+        encoder_aux_1 = (((encoder_aux_1 & 0b01111111) << 5) | ((uint8_t)(enc_rx_buffer[1] >> 3)));
+        check_aux_1 = (uint16_t)(enc_rx_buffer[1]);
+        check_aux_1 = (((check_aux_1 & 0b00000111) << 2) | (enc_rx_buffer[2] >> 6));
+        // Encoder 2
+        encoder_aux_2 = (uint16_t)(enc_rx_buffer[2]);
+        encoder_aux_2 = (((encoder_aux_2 & 0b00001111) << 4) | (enc_rx_buffer[3]));
+        check_aux_2 = (uint16_t)(enc_rx_buffer[4]);
+        check_aux_2 = check_aux_2 >> 3;
+        // Encoder 3
+        encoder_aux_3 = (uint16_t)(enc_rx_buffer[4]);
+        encoder_aux_3 = (((encoder_aux_3 & 0b00000001) << 8) | (enc_rx_buffer[5]));
+        check_aux_3 = ((check_aux_3 << 3) | (enc_rx_buffer[6] >> 5));
+        check_aux_3 = (enc_rx_buffer[6] & 0b00011111);
+        // Encoder 4
+        encoder_aux_4 = (uint16_t)(enc_rx_buffer[7]);
+        encoder_aux_4 = (((encoder_aux_4 & 0b00111111) << 6) | (enc_rx_buffer[8] >> 2));
+        check_aux_4 = (uint16_t)(enc_rx_buffer[8]);
+        check_aux_4 = (((check_aux_4 & 0b00000011) << 3) | (enc_rx_buffer[9] >> 5));
+        // Encoder 5
+        encoder_aux_5 = (uint16_t)(enc_rx_buffer[9]);
+        encoder_aux_5 = ((encoder_aux_5 << 8) | (enc_rx_buffer[10]));
+        encoder_aux_5 = ((encoder_aux_5 << 1) | (enc_rx_buffer[11] >> 7));
+        check_aux_5 = (uint16_t)(enc_rx_buffer[11]);
+        check_aux_5 = ((check_aux_5 & 0b01111111) >> 2);
+        // Encoder 6
+        encoder_aux_6 = (uint16_t)(enc_rx_buffer[12]);
+        encoder_aux_6 = ((encoder_aux_6 << 4) | (enc_rx_buffer[13] >> 4));
+        check_aux_6 = (((enc_rx_buffer[13] & 0b00001111) << 1) | (enc_rx_buffer[14] >> 7));
+        // Encoder 7
+        encoder_aux_7 = (uint16_t)(enc_rx_buffer[14]);
+        encoder_aux_7 = (((encoder_aux_7 & 0b00011111) << 7) | (enc_rx_buffer[15] >> 1));
+        check_aux_7 = (((enc_rx_buffer[15] & 0b00000001) << 4) | (enc_rx_buffer[16] >> 4));
+        // Encoder 8
+        encoder_aux_8 = (uint16_t)(enc_rx_buffer[16]);
+        encoder_aux_8 = (encoder_aux_8 << 6) | (enc_rx_buffer[17]);
+        encoder_aux_8 = ((encoder_aux_8 << 2) | (enc_rx_buffer[18] >> 6));
+        check_aux_8 = (uint16_t)(enc_rx_buffer[18]);
+        check_aux_8 = ((check_aux_8 & 0b00111111) >> 1);
+
+
+    	for (int i=0; i<19; i++) {
+    		enc_rx_buffer[i] = 0;
+    	}
+
+    }
+    */
+}
+
+
+
+
+// [GS]
+// Passi da Fare:
+// 1 - includere tutte le funzione per la gestione degli encoder
+// 2 - modifiche sul main e sulla function_scheduler
+// 3 - includere la get_measurement
+// 4 - includere le funzioni per il controllo del motore
+
+// Codice preso da MBED
+
+/*
+AnalogIn EMG_1(PC_3); // Parte relativa all'ADC
+
+// Encoder Variables
+const char* tx_buffer;
+char* rx_buffer;
+int tx_buffer_size, rx_buffer_size;
+short Encoder_Read[N_Cycles]; // N_Cycles;
+short Encoder_Value[N_Encoder]; // N_Encoder
+int j_encoder = 0;
+// ADC Variables
+int EMG_1_Value;
+
+///////////////////////////////////////////
+/////////// CUSTOM FUNCTIONS
+///////////////////////////////////////////
+
+int main() {
+
+    // Encoder
+    //opto = 1;
+    CS_ENCODER = 1;
+    SPI_ENCODER.format(E_format,2);     // MODE 2 Setup the spi for 9 bit data, high steady state clock,
+    SPI_ENCODER.frequency(1000000);
+    tx_buffer = 0;
+    rx_buffer = new char[N_Cycles];
+    tx_buffer_size = 0;
+    rx_buffer_size = N_Cycles;
+
+    // Ticker
+    Encoder_Control.attach(&Read_Encoders, 1);
+
+    while (true) {
+
+        EMG_1_Value = (EMG_1.read() * 5000);
+
+        if(flag != 0) {
+
+            if (flag == 'a') {
+                SERIAL_PC.printf("Valore ADC: ");
+                SERIAL_PC.printf("%d", EMG_1_Value);
+                SERIAL_PC.printf("\r");
+                SERIAL_PC.printf("\n");
+            }
+            if(flag == 'e') { // ENCODER
+                for (j_encoder=0; j_encoder < N_Encoder; j_encoder++) {
+                    SERIAL_PC.printf(" V");
+                    SERIAL_PC.printf("%d", j_encoder);
+                    SERIAL_PC.printf(": ");
+                    SERIAL_PC.printf("%d", Encoder_Value[j_encoder]);
+                }
+                SERIAL_PC.printf("\r");
+                SERIAL_PC.printf("\n");
+                flag = 0;
+            }
+
+        flag = 0;
+        }
+    }
+}
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
