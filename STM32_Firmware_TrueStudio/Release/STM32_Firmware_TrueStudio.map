@@ -1544,7 +1544,7 @@ LOAD c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../l
 .iplt           0x08007db4        0x0
  .iplt          0x08007db4        0x0 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/crtbegin.o
 
-.rodata         0x08007db4      0x5c8
+.rodata         0x08007db4      0x5d4
                 0x08007db4                . = ALIGN (0x4)
  *(.rodata)
  .rodata        0x08007db4       0x33 Src\User_Functions\command_processing.o
@@ -1557,58 +1557,58 @@ LOAD c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../l
  .rodata.get_IMU_param_list.str1.1
                 0x08007def      0x1e0 Src\User_Functions\command_processing.o
  .rodata.infoPrepare.str1.1
-                0x08007fcf      0x26c Src\User_Functions\command_processing.o
-                                0x27c (size before relaxing)
+                0x08007fcf      0x279 Src\User_Functions\command_processing.o
+                                0x289 (size before relaxing)
  .rodata.infoReading.str1.1
-                0x0800823b       0xee Src\User_Functions\command_processing.o
+                0x08008248       0xee Src\User_Functions\command_processing.o
  .rodata.AHBPrescTable
-                0x08008329       0x10 Src\system_stm32f4xx.o
-                0x08008329                AHBPrescTable
+                0x08008336       0x10 Src\system_stm32f4xx.o
+                0x08008336                AHBPrescTable
  .rodata.APBPrescTable
-                0x08008339        0x8 Src\system_stm32f4xx.o
-                0x08008339                APBPrescTable
+                0x08008346        0x8 Src\system_stm32f4xx.o
+                0x08008346                APBPrescTable
  .rodata._svfprintf_r.str1.1
-                0x08008341       0x11 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libc_nano.a(lib_a-nano-svfprintf.o)
+                0x0800834e       0x11 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libc_nano.a(lib_a-nano-svfprintf.o)
  .rodata._printf_i.str1.1
-                0x08008352       0x22 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libc_nano.a(lib_a-nano-vfprintf_i.o)
+                0x0800835f       0x22 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libc_nano.a(lib_a-nano-vfprintf_i.o)
  .rodata.sqrt.str1.1
-                0x08008374        0x5 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libm.a(lib_a-w_sqrt.o)
-                0x0800837c                . = ALIGN (0x4)
- *fill*         0x08008379        0x3 
+                0x08008381        0x5 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu\libm.a(lib_a-w_sqrt.o)
+                0x08008388                . = ALIGN (0x4)
+ *fill*         0x08008386        0x2 
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM            0x0800837c        0x8
-                0x0800837c                __exidx_start = .
+.ARM            0x08008388        0x8
+                0x08008388                __exidx_start = .
  *(.ARM.exidx*)
- .ARM.exidx     0x0800837c        0x8 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu\libgcc.a(_udivmoddi4.o)
-                0x08008384                __exidx_end = .
+ .ARM.exidx     0x08008388        0x8 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu\libgcc.a(_udivmoddi4.o)
+                0x08008390                __exidx_end = .
 
-.rel.dyn        0x08008384        0x0
- .rel.iplt      0x08008384        0x0 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/crtbegin.o
+.rel.dyn        0x08008390        0x0
+ .rel.iplt      0x08008390        0x0 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/crtbegin.o
 
-.preinit_array  0x08008384        0x0
-                0x08008384                PROVIDE (__preinit_array_start, .)
+.preinit_array  0x08008390        0x0
+                0x08008390                PROVIDE (__preinit_array_start, .)
  *(.preinit_array*)
-                0x08008384                PROVIDE (__preinit_array_end, .)
+                0x08008390                PROVIDE (__preinit_array_end, .)
 
-.init_array     0x08008384        0x4
-                0x08008384                PROVIDE (__init_array_start, .)
+.init_array     0x08008390        0x4
+                0x08008390                PROVIDE (__init_array_start, .)
  *(SORT(.init_array.*))
  *(.init_array*)
- .init_array    0x08008384        0x4 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/crtbegin.o
-                0x08008388                PROVIDE (__init_array_end, .)
+ .init_array    0x08008390        0x4 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/crtbegin.o
+                0x08008394                PROVIDE (__init_array_end, .)
 
-.fini_array     0x08008388        0x4
+.fini_array     0x08008394        0x4
                 [!provide]                PROVIDE (__fini_array_start, .)
  *(SORT(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08008388        0x4 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/crtbegin.o
+ .fini_array    0x08008394        0x4 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/crtbegin.o
                 [!provide]                PROVIDE (__fini_array_end, .)
-                0x0800838c                _sidata = LOADADDR (.data)
+                0x08008398                _sidata = LOADADDR (.data)
 
-.data           0x20000000      0xa3c load address 0x0800838c
+.data           0x20000000      0xa3c load address 0x08008398
                 0x20000000                . = ALIGN (0x4)
                 0x20000000                _sdata = .
  *(.data)
@@ -1642,11 +1642,11 @@ LOAD c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../l
  *fill*         0x20000a39        0x3 
                 0x20000a3c                _edata = .
 
-.igot.plt       0x20000a3c        0x0 load address 0x08008dc8
+.igot.plt       0x20000a3c        0x0 load address 0x08008dd4
  .igot.plt      0x20000a3c        0x0 c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/crtbegin.o
                 0x20000a3c                . = ALIGN (0x4)
 
-.bss            0x20000a3c     0x13f4 load address 0x08008dc8
+.bss            0x20000a3c     0x13f4 load address 0x08008dd4
                 0x20000a3c                _sbss = .
                 0x20000a3c                __bss_start__ = _sbss
  *(.bss)
@@ -1793,7 +1793,7 @@ LOAD c:/program files (x86)/atollic/truestudio for stm32 9.3.0/armtools/bin/../l
                 0x20001e30                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x20001e30      0x600 load address 0x08008dc8
+                0x20001e30      0x600 load address 0x08008dd4
                 0x20001e30                . = ALIGN (0x4)
                 0x20001e30                PROVIDE (end, .)
                 [!provide]                PROVIDE (_end, .)

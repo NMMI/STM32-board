@@ -68,7 +68,7 @@ extern FLASH_EraseInitTypeDef mem_settings;
 //                                                                        DEVICE
 //==============================================================================
 
-#define VERSION                 "STM32 Board v 0.8 r2021"
+#define VERSION                 "STM32 Board v 0.8 r2023 No LP Filter"
 
 #define N_IMU_MAX               19 	// 18 CS pin + 1 IMU on the board
 #define NUM_OF_DATA              5  // accelerometers, gyroscopes, magnetometers, quaternion and temperature data

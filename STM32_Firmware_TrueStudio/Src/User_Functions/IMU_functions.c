@@ -740,10 +740,10 @@ uint8_t ReadControlRegister(uint8_t address){
 void SPI_delay(){ // Sto usando la libreria DWT ma al momento non l'ho testata
     switch( c_mem.SPI_read_delay ) {
         case 1:     // Low
-					  DWT_Delay((uint16_t)SPI_DELAY_LOW);
-            break;
+        	DWT_Delay((uint16_t)SPI_DELAY_LOW);
+        	break;
         case 2:     // High
-						DWT_Delay((uint16_t)SPI_DELAY_HIGH);
+        	DWT_Delay((uint16_t)SPI_DELAY_HIGH);
             break;
         default:    // None
             break;
